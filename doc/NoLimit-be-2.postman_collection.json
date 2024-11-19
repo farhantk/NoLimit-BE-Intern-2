@@ -1,0 +1,382 @@
+{
+	"info": {
+		"_postman_id": "474db09f-b669-4bc8-bc9b-a1a74dd79cdc",
+		"name": "NoLimit-be-2",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "27413904"
+	},
+	"item": [
+		{
+			"name": "elastic",
+			"item": [
+				{
+					"name": "create",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"mappings\": {\r\n        \"employees\": {\r\n            \"properties\": {\r\n                \"Address\": {\r\n                    \"type\": \"text\"\r\n                },\r\n                \"Age\": {\r\n                    \"type\": \"integer\"\r\n                },\r\n                \"DateOfJoining\": {\r\n                    \"type\": \"date\"\r\n                },\r\n                \"Designation\": {\r\n                    \"type\": \"text\",\r\n                    \"fields\": {\r\n                        \"keyword\": {\r\n                            \"type\": \"keyword\"\r\n                        }\r\n                    }\r\n                },\r\n                \"FirstName\": {\r\n                    \"type\": \"text\",\r\n                    \"fields\": {\r\n                        \"keyword\": {\r\n                            \"type\": \"keyword\"\r\n                        }\r\n                    }\r\n                },\r\n                \"Gender\": {\r\n                    \"type\": \"text\",\r\n                    \"fields\": {\r\n                        \"keyword\": {\r\n                            \"type\": \"keyword\"\r\n                        }\r\n                    }\r\n                },\r\n                \"Interests\": {\r\n                    \"type\": \"text\",\r\n                    \"fields\": {\r\n                        \"keyword\": {\r\n                            \"type\": \"keyword\"\r\n                        }\r\n                    }\r\n                },\r\n                \"LastName\": {\r\n                    \"type\": \"text\",\r\n                    \"fields\": {\r\n                        \"keyword\": {\r\n                            \"type\": \"keyword\"\r\n                        }\r\n                    }\r\n                },\r\n                \"MaritalStatus\": {\r\n                    \"type\": \"text\",\r\n                    \"fields\": {\r\n                        \"keyword\": {\r\n                            \"type\": \"keyword\"\r\n                        }\r\n                    }\r\n                },\r\n                \"Salary\": {\r\n                    \"type\": \"integer\"\r\n                }\r\n            }\r\n        }\r\n    }\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://127.0.0.1:9200/companydatabase?pretty",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "9200",
+							"path": [
+								"companydatabase"
+							],
+							"query": [
+								{
+									"key": "pretty",
+									"value": null
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "delete",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "http://127.0.0.1:9200/companydatabase",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "9200",
+							"path": [
+								"companydatabase"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "store data",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "file",
+							"file": {
+								"src": "/D:/Tugas/NoLimit/NoLimit_BE_Intern_2/Employees50K.json"
+							}
+						},
+						"url": {
+							"raw": "http://127.0.0.1:9200/companydatabase/_bulk",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "9200",
+							"path": [
+								"companydatabase",
+								"_bulk"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "verify",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://127.0.0.1:9200/companydatabase/_count?pretty=true",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "9200",
+							"path": [
+								"companydatabase",
+								"_count"
+							],
+							"query": [
+								{
+									"key": "pretty",
+									"value": "true"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "mapping",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:9200/companydatabase/_mapping",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "9200",
+							"path": [
+								"companydatabase",
+								"_mapping"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "API",
+			"item": [
+				{
+					"name": "count row",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:3000/count?index=companydatabase",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"count"
+							],
+							"query": [
+								{
+									"key": "index",
+									"value": "companydatabase"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "AVG Salary",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:3000/averagesalary?index=companydatabase",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"averagesalary"
+							],
+							"query": [
+								{
+									"key": "index",
+									"value": "companydatabase"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Min Max Salary",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:3000/minmaxsalary?index=companydatabase",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"minmaxsalary"
+							],
+							"query": [
+								{
+									"key": "index",
+									"value": "companydatabase"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Age Distribution",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:3000/agedistribution?index=companydatabase",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"agedistribution"
+							],
+							"query": [
+								{
+									"key": "index",
+									"value": "companydatabase"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Gender Distribution",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:3000/genderdistribution?index=companydatabase",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"genderdistribution"
+							],
+							"query": [
+								{
+									"key": "index",
+									"value": "companydatabase"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Joining Distribution",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:3000/dateofjoining?index=companydatabase",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"dateofjoining"
+							],
+							"query": [
+								{
+									"key": "index",
+									"value": "companydatabase"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Interest Distribution",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:3000/interestdistribution?index=companydatabase",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"interestdistribution"
+							],
+							"query": [
+								{
+									"key": "index",
+									"value": "companydatabase"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Designation Distribution",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:3000/designationdistribution?index=companydatabase",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"designationdistribution"
+							],
+							"query": [
+								{
+									"key": "index",
+									"value": "companydatabase"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Marital Status Distribution",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:3000/maritaldistribution?index=companydatabase",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"maritaldistribution"
+							],
+							"query": [
+								{
+									"key": "index",
+									"value": "companydatabase"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	]
+}
